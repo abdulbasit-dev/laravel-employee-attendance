@@ -18,13 +18,13 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('departments.index') }}">{{ $title }}s</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('jobs.index') }}">{{ $title }}s</a></li>
             </ol>
         </nav>
         <h2 class="h4">All {{ $title }}s</h2>
     </div>
     <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="{{ route('departments.create') }}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center animate-up-2">
+        <a href="{{ route('jobs.create') }}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center animate-up-2">
             <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -41,15 +41,17 @@
             <tr>
                 <th class="border-gray-200">#</th>
                 <th class="border-gray-200">Name</th>
+                <th class="border-gray-200">Department</th>
                 <th class="border-gray-200">Action</th>
             </tr>
         </thead>
         <tbody>
 
-            @forelse ($depts as $dept)
+            @forelse ($jobs as $job)
                 <tr>
                     <td class="fw-bold">{{ $loop->iteration }}</td>
-                    <td><span class="fw-normal">{{ $dept->name }}</span></td>
+                    <td><span class="fw-normal">{{ $job->title }}</span></td>
+                    <td><span class="fw-normal text-info">{{ $job->department->name }}</span></td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0"
@@ -60,9 +62,9 @@
                                 <span class="visually-hidden">Toggle Dropdown</span>
                             </button>
                             <div class="dropdown-menu py-0">
-                                <a class="dropdown-item" href="{{ route('departments.edit',$dept->id) }}"><span class="fas fa-edit me-2"></span>Edit</a>
-                                <form action="{{ route('departments.destroy', $dept->id) }}" method="POST"
-                                    id="myForm_{{ $dept->id }}">
+                                <a class="dropdown-item" href="{{ route('jobs.edit',$job->id) }}"><span class="fas fa-edit me-2"></span>Edit</a>
+                                <form action="{{ route('jobs.destroy', $job->id) }}" method="POST"
+                                    id="myForm_{{ $job->id }}">
                                     @method("DELETE")
                                     @csrf
                                 </form>
@@ -75,7 +77,7 @@
                                                     confirmButtonText: 'Yes, delete it'
                                                     }).then((result) => {
                                                     if (result.isConfirmed) {
-                                                    document.getElementById('myForm_{{ $dept->id }}').submit();
+                                                    document.getElementById('myForm_{{ $job->id }}').submit();
                                                                             }
                                                     })
                                                 ">
@@ -96,7 +98,7 @@
     <div
         class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
         <nav aria-label="Page navigation example">
-            {{ $depts->links() }}
+            {{ $jobs->links() }}
         </nav>
     </div>
 </div>
