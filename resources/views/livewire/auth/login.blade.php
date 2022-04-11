@@ -13,8 +13,8 @@
                             <h1 class="mb-3 h3">Welcome back</h1>
                             <p class="mb-0"> Create new account or
                                 <p class="mb-0">Sign in with these credentials:</p>
-                                <p class="mb-0"> Email: <strong>admin@volt.com</strong> Password:
-                                    <strong>secret</strong></p>
+                                <p class="mb-0"> Email: <strong>admin@test.com</strong> Password:
+                                    <strong>password</strong></p>
 
                             </p>
                         </div>

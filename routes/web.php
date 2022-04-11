@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\{
+    JobController,
+    DepartmentController,
+};
+
+
 use App\Http\Livewire\BootstrapTables;
 use App\Http\Livewire\Components\Buttons;
 use App\Http\Livewire\Components\Forms;
@@ -68,4 +74,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/forms', Forms::class)->name('forms');
     Route::get('/modals', Modals::class)->name('modals');
     Route::get('/typography', Typography::class)->name('typography');
+});
+
+
+// Admin Routes 
+Route::group(["middleware" => ['auth', "is_admin"],], function () {
+    Route::resource("departments", DepartmentController::class);
+    Route::resource("jobs", JobController::class);
 });
