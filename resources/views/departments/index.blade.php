@@ -41,6 +41,8 @@
             <tr>
                 <th class="border-gray-200">#</th>
                 <th class="border-gray-200">Name</th>
+                <th class="border-gray-200">Created At</th>
+                <th class="border-gray-200">Updated At</th>
                 <th class="border-gray-200">Action</th>
             </tr>
         </thead>
@@ -50,6 +52,8 @@
                 <tr>
                     <td class="fw-bold">{{ $loop->iteration }}</td>
                     <td><span class="fw-normal">{{ $dept->name }}</span></td>
+                    <td><span class="fw-normal">{{ $dept->created_at }}</span></td>
+                    <td><span class="fw-normal">{{ $dept->updated_at }}</span></td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0"

@@ -82,4 +82,5 @@ Route::group(["middleware" => ['auth', "is_admin"],], function () {
 
     Route::resource("departments", DepartmentController::class)->except("show");
     Route::resource("jobs", JobController::class)->except("show");
+    Route::resource("employees", JobController::class);
 });
