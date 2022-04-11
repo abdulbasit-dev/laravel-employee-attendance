@@ -1,10 +1,8 @@
-<title>Volt Laravel Dashboard</title>
+@extends("layouts.app")
+@section("title", "Dashboard")
+@section("content")
 <div class="py-4">
     <div class="dropdown">
-        <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-            New Task
-        </button>
         <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
             <a class="dropdown-item d-flex align-items-center" href="#">
                 <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path></svg>
@@ -31,28 +29,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12 mb-4">
-        <div class="card border-0 shadow" style="background-color: #fac0b9">
-            <div class="card-header d-sm-flex flex-row align-items-center flex-0">
-                <div class="d-block mb-3 mb-sm-0">
-                    <div class="fs-5 fw-normal mb-2">Sales Value</div>
-                    <h2 class="fs-3 fw-extrabold">$10,567</h2>
-                    <div class="small mt-2"> 
-                        <span class="fw-normal me-2">Yesterday</span>                              
-                        <span class="fas fa-angle-up text-success"></span>                                   
-                        <span class="text-success fw-bold">10.57%</span>
-                    </div>
-                </div>
-                <div class="d-flex ms-auto">
-                    <a href="#" class="btn btn-secondary btn-sm me-2">Month</a>
-                    <a href="#" class="btn btn-sm me-3">Week</a>
-                </div>
-            </div>
-            <div class="card-body p-2">
-                <div class="ct-chart-sales-value ct-double-octave ct-series-g"></div>
-            </div>
-        </div>
-    </div>
+
     <div class="col-12 col-sm-6 col-xl-4 mb-4">
         <div class="card border-0 shadow">
             <div class="card-body">
@@ -62,13 +39,13 @@
                             <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
                         </div>
                         <div class="d-sm-none">
-                            <h2 class="h5">Customers</h2>
+                            <h2 class="h5">Employees</h2>
                             <h3 class="fw-extrabold mb-1">345,678</h3>
                         </div>
                     </div>
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
-                            <h2 class="h6 text-gray-400 mb-0">Customers</h2>
+                            <h2 class="h6 text-gray-400 mb-0">Employees</h2>
                             <h3 class="fw-extrabold mb-2">345k</h3>
                         </div>
                         <small class="d-flex align-items-center text-gray-500">
@@ -84,6 +61,7 @@
             </div>
         </div>
     </div>
+    
     <div class="col-12 col-sm-6 col-xl-4 mb-4">
         <div class="card border-0 shadow">
             <div class="card-body">
@@ -93,13 +71,13 @@
                             <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
                         </div>
                         <div class="d-sm-none">
-                            <h2 class="fw-extrabold h5">Revenue</h2>
+                            <h2 class="fw-extrabold h5">Departments</h2>
                             <h3 class="mb-1">$43,594</h3>
                         </div>
                     </div>
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
-                            <h2 class="h6 text-gray-400 mb-0">Revenue</h2>
+                            <h2 class="h6 text-gray-400 mb-0">Departments</h2>
                             <h3 class="fw-extrabold mb-2">$43,594</h3>
                         </div>
                         <small class="d-flex align-items-center text-gray-500">
@@ -115,6 +93,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-12 col-sm-6 col-xl-4 mb-4">
         <div class="card border-0 shadow">
             <div class="card-body">
@@ -124,13 +103,13 @@
                             <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                         </div>
                         <div class="d-sm-none">
-                            <h2 class="fw-extrabold h5"> Bounce Rate</h2>
+                            <h2 class="fw-extrabold h5"> Jobs</h2>
                             <h3 class="mb-1">50.88%</h3>
                         </div>
                     </div>
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
-                            <h2 class="h6 text-gray-400 mb-0"> Bounce Rate</h2>
+                            <h2 class="h6 text-gray-400 mb-0"> Jobs</h2>
                             <h3 class="fw-extrabold mb-2">50.88%</h3>
                         </div>
                         <small class="text-gray-500">
@@ -145,6 +124,7 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-12 col-xl-8">
         <div class="row">
@@ -566,3 +546,5 @@
         </div>
     </div>
 </div>
+
+@endsection

@@ -24,7 +24,7 @@ class DepartmentSeeder extends Seeder
 
         foreach ($arr as $dept) {
             Department::create([
-                "title"=>$dept
+                "name"=>$dept
             ]);
         }
     }

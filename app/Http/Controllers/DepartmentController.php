@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 
 class DepartmentController extends Controller
 {
+
+    public function __construct()
+    {
+        View::share([
+            "title" => "Department"
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        return view("departments.index");
+        $depts = Department::orderByDesc("created_at")->paginate(10);
+        return view("departments.index", compact("depts"));
     }
 
     /**
@@ -24,7 +35,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view("departments.create");
     }
 
     /**
@@ -35,18 +46,25 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validator =  Validator::make($request->all(), [
+            "name" => ['required', 'string', 'unique:departments,name']
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Department  $department
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Department $department)
-    {
-        //
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Department::create([
+            "name" => $request->name
+        ]);
+
+        return redirect()->route('departments.index')->with([
+            "message" => "Department Created Successfully",
+            "title" => "Created",
+            "icon" => "success",
+        ]);
     }
 
     /**
@@ -57,7 +75,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view("departments.edit", compact("department"));
     }
 
     /**
@@ -69,7 +87,25 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department)
     {
-        //
+        $validator =  Validator::make($request->all(), [
+            "name" => ['required', 'string', "unique:departments,name,". $department->id.",id" ]
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $department->update([
+            "name" => $request->name
+        ]);
+
+        return redirect()->route('departments.index')->with([
+            "message" => "Department Updated Successfully",
+            "title" => "Updated",
+            "icon" => "success",
+        ]);
     }
 
     /**
@@ -80,6 +116,11 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+        $department->delete();
+        return redirect()->route('departments.index')->with([
+            "message" => "Department Deleted Successfully",
+            "title" => "Deleted",
+            "icon" => "success",
+        ]);
     }
 }
