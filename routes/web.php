@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', Profile::class)->name('profile');
 
     // Admin Routes 
-    Route::middleware('is_adimin')->group(function () {
+    Route::middleware('is_admin')->group(function () {
         Route::resource("departments", DepartmentController::class)->except("show");
         Route::resource("jobs", JobController::class)->except("show");
         Route::resource("employees", JobController::class);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
     <!-- Favicons -->
@@ -19,10 +19,9 @@
     <!-- Apex Charts -->
     <link type="text/css" href="/vendor/apexcharts/apexcharts.css" rel="stylesheet">
 
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        >
+        rel="stylesheet">
 
     <!-- Datepicker -->
     <link rel="stylesheet"
@@ -105,7 +104,6 @@
         {{-- TopBar --}}
         @include('layouts.topbar')
         @yield("content")
-        {{-- Footer --}}
     </main>
 
 
