@@ -56,8 +56,8 @@
             <tr>
                 <td class="fw-bold">{{ $loop->iteration }}</td>
                 <td><span class="fw-normal">{{ $user->first_name . " ". $user->last_name }}</span></td>
-                <td><span class="fw-normal text-success">{{ $user->job->title }}</span></td>
-                <td><span class="fw-normal text-info">{{ $user->job->department->name }}</span></td>
+                <td><span class="fw-normal text-success">{{ $user->job->title??"Null" }}</span></td>
+                <td><span class="fw-normal text-info">{{ $user->job->department->name??"Null" }}</span></td>
                 <td><span class="fw-normal">{{ $user->created_at }}</span></td>
                 <td><span class="fw-normal">{{ $user->updated_at }}</span></td>
                 <td>
