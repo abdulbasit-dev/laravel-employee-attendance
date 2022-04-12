@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -28,16 +30,27 @@ class UserSeeder extends Seeder
             'password' => bcrypt("password"),
         ]);
 
-        // foreach (range(1, 50) as $item) {
-        //     $fname =  Str::lower($array[rand(0, count($array) - 1)]);
-        //     $lname =  Str::lower($array[rand(0, count($array) - 1)]);
-        // }
-
         DB::table("users")->insert([
             'first_name' => 'sara',
             'last_name' => 'User',
             'email' => 'sara@test.com',
             'password' => bcrypt("password"),
         ]);
+
+        foreach (range(1, 50) as $item) {
+            $fname =  Str::lower($array[rand(0, count($array) - 1)]);
+            $lname =  Str::lower($array[rand(0, count($array) - 1)]);
+
+            User::create([
+                'first_name' => $fname,
+                'last_name' => $lname,
+                'job_id' => Job::inRandomOrder()->first()->id,
+                'email' => $fname . "_" . $lname . '@test.com',
+                'gender' => $item % 2 == 0 ? 0 : 1,
+                'number' => "750 425 8891",
+                'address' => "Erbil, center",
+                'password' => bcrypt("password"),
+            ]);
+        }
     }
 }

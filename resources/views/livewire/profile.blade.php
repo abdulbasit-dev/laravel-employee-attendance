@@ -1,6 +1,5 @@
 @section("content")
-
-<title>Volt Laravel Dashboard - Profile</title>
+@section("title",$title)
 <div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div>
@@ -135,7 +134,7 @@
             @endif
             <div class="card card-body border-0 shadow mb-4">
                 <h2 class="h5 mb-4">General information</h2>
-                <form wire:submit.prevent="save" action="#" method="POST">
+                <form wire:submit.prevent="save">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div>
