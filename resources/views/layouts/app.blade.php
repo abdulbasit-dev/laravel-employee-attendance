@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 
 <head>
     <!-- Favicons -->
@@ -19,10 +19,11 @@
     <!-- Apex Charts -->
     <link type="text/css" href="/vendor/apexcharts/apexcharts.css" rel="stylesheet">
 
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
         rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-        crossorigin="anonymous">
+        >
+
     <!-- Datepicker -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css">
@@ -41,7 +42,7 @@
     <!-- Volt CSS -->
     <link type="text/css" href="/css/volt.css" rel="stylesheet">
 
-    <title>{{ config("app.name")  }} | @yield("title")</title>
+    <title>{{ config("app.name") }} | @yield("title")</title>
 
     @livewireStyles
 
@@ -110,8 +111,8 @@
 
     {{-- sweetalert2 --}}
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-    
-    
+
+
     @stack('scripts')
     {{-- sweetalert2 message --}}
     @if (Session::has('message'))
@@ -129,7 +130,7 @@
 
 </html>
 
-{{-- 
+{{--
 <x-layouts.base>
 
 
