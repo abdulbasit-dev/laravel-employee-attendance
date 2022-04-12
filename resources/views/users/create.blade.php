@@ -1,6 +1,6 @@
 @extends("layouts.app")
 
-@section("title", $title)
+@section("title", $title."s")
 
 @section("content")
 {{-- header --}}
@@ -20,10 +20,10 @@
                 </li>
                 <li class="breadcrumb-item"><a href="{{ route('jobs.index') }}">{{ $title
                         }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                <li class="breadcrumb-item active" aria-current="page">Create</li>
             </ol>
         </nav>
-        <h2 class="h4">Edit {{ $title }}s</h2>
+        <h2 class="h4">Create New {{ $title }}s</h2>
     </div>
     <div class="btn-toolbar mb-2 mb-md-0">
         <a href="{{ route('jobs.index') }}"
@@ -39,15 +39,14 @@
 </div>
 
 <div class="card card-body border-0 shadow table-wrapper table-responsive">
-    <form action="{{ route('jobs.update', $job->id) }}" method="POST">
+    <form action="{{ route('jobs.store') }}" method="POST">
         @csrf
-        @method("PUT")
         <div class="row">
             <div class="col-6">
                 <div class="mb-4">
                     <label for="name">Job Title</label>
                     <input type="name" class="form-control" id="title" aria-describedby="title"
-                        name="title" value="{{ old("title",$job->title) }}">
+                        name="title" value="{{ old("title") }}">
                     @error("title")
                     <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
                     @enderror
@@ -61,9 +60,7 @@
                     <select class="form-select" name="department_id" id="epartment">
                         <option value>Select Department</option>
                         @foreach ($depts as $key=>$value)
-                        <option value="{{ $key }}" @selected(old('department_id', $job->department_id)==$key)>{{ $value
-                            }}
-                        </option>
+                        <option value="{{ $key }}" @selected(old('department_id') == $key)>{{ $value }}</option>
                         @endforeach
                     </select>
                     @error("department_id")

@@ -1,6 +1,6 @@
 @extends("layouts.app")
 
-@section("title", $title)
+@section("title", $title."s")
 
 @section("content")
 {{-- header --}}
@@ -18,14 +18,14 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('jobs.index') }}">{{ $title }}s</a>
+                <li class="breadcrumb-item"><a href="{{ route('users.index') }}">{{ $title }}s</a>
                 </li>
             </ol>
         </nav>
         <h2 class="h4">All {{ $title }}s</h2>
     </div>
     <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="{{ route('jobs.create') }}"
+        <a href="{{ route('users.create') }}"
             class="btn btn-sm btn-gray-800 d-inline-flex align-items-center animate-up-2">
             <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,8 @@
         <thead>
             <tr>
                 <th class="border-gray-200">#</th>
-                <th class="border-gray-200">Name</th>
+                <th class="border-gray-200">Full Name</th>
+                <th class="border-gray-200">Job</th>
                 <th class="border-gray-200">Department</th>
                 <th class="border-gray-200">Created At</th>
                 <th class="border-gray-200">Updated At</th>
@@ -51,13 +52,14 @@
         </thead>
         <tbody>
 
-            @forelse ($jobs as $job)
+            @forelse ($users as $user)
             <tr>
                 <td class="fw-bold">{{ $loop->iteration }}</td>
-                <td><span class="fw-normal">{{ $job->title }}</span></td>
-                <td><span class="fw-normal text-info">{{ $job->department->name }}</span></td>
-                <td><span class="fw-normal">{{ $job->created_at }}</span></td>
-                <td><span class="fw-normal">{{ $job->updated_at }}</span></td>
+                <td><span class="fw-normal">{{ $user->first_name . " ". $user->last_name }}</span></td>
+                <td><span class="fw-normal text-success">{{ $user->job->title }}</span></td>
+                <td><span class="fw-normal text-info">{{ $user->job->department->name }}</span></td>
+                <td><span class="fw-normal">{{ $user->created_at }}</span></td>
+                <td><span class="fw-normal">{{ $user->updated_at }}</span></td>
                 <td>
                     <div class="btn-group">
                         <button
@@ -69,10 +71,11 @@
                             <span class="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu py-0">
-                            <a class="dropdown-item" href="{{ route('jobs.edit',$job->id) }}"><span
+                            <a class="dropdown-item"
+                                href="{{ route('users.edit',$user->id) }}"><span
                                     class="fas fa-edit me-2"></span>Edit</a>
-                            <form action="{{ route('jobs.destroy', $job->id) }}" method="POST"
-                                id="myForm_{{ $job->id }}">
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                id="myForm_{{ $user->id }}">
                                 @method("DELETE")
                                 @csrf
                             </form>
@@ -84,7 +87,7 @@
                                                     confirmButtonText: 'Yes, delete it'
                                                     }).then((result) => {
                                                     if (result.isConfirmed) {
-                                                    document.getElementById('myForm_{{ $job->id }}').submit();
+                                                    document.getElementById('myForm_{{ $user->id }}').submit();
                                                                             }
                                                     })
                                                 ">
@@ -101,11 +104,8 @@
 
         </tbody>
     </table>
-    <div
-        class="card-footer px-3 border-0 d-flex flex-column flex-lg-row align-items-center justify-content-between">
-        <nav aria-label="Page navigation example">
-            {{ $jobs->links() }}
-        </nav>
+    <div class="card-footer px-3 border-0 mt-3">
+        {{ $users->links() }}
     </div>
 </div>
 @endsection

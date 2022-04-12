@@ -3,33 +3,19 @@
 use App\Http\Controllers\{
     JobController,
     DepartmentController,
+    UserController,
 };
 
 
-use App\Http\Livewire\BootstrapTables;
-use App\Http\Livewire\Components\Buttons;
-use App\Http\Livewire\Components\Forms;
-use App\Http\Livewire\Components\Modals;
-use App\Http\Livewire\Components\Notifications;
-use App\Http\Livewire\Components\Typography;
+
 use App\Http\Livewire\Dashboard;
-use App\Http\Livewire\Err404;
-use App\Http\Livewire\Err500;
 use App\Http\Livewire\ResetPassword;
 use App\Http\Livewire\ForgotPassword;
-use App\Http\Livewire\Lock;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Profile;
 use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\ForgotPasswordExample;
-use App\Http\Livewire\LoginExample;
-use App\Http\Livewire\ProfileExample;
-use App\Http\Livewire\RegisterExample;
-use App\Http\Livewire\Transactions;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\ResetPasswordExample;
-use App\Http\Livewire\UpgradeToPro;
-use App\Http\Livewire\Users;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('is_admin')->group(function () {
         Route::resource("departments", DepartmentController::class)->except("show");
         Route::resource("jobs", JobController::class)->except("show");
-        Route::resource("employees", JobController::class);
+        Route::resource("users", UserController::class);
     });
 });
-
-
