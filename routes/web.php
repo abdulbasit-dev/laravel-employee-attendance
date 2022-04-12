@@ -22,7 +22,6 @@ use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Profile;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\ForgotPasswordExample;
-use App\Http\Livewire\Index;
 use App\Http\Livewire\LoginExample;
 use App\Http\Livewire\ProfileExample;
 use App\Http\Livewire\RegisterExample;
