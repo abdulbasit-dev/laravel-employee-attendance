@@ -45,8 +45,8 @@
             <div class="col-3">
                 <div class="mb-4">
                     <label for="first_name">First Name</label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old("first_name")
-                        }}">
+                    <input type="text" class="form-control" id="first_name" name="first_name"
+                        value="{{ old("first_name") }}">
                     @error("first_name")
                     <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
@@ -95,7 +95,7 @@
                     <select class="form-select" name="job" id="job">
                         <option value>Select Job</option>
                         @foreach ($jobs as $key=>$value)
-                        <option value="{{ $key }}" @selected(old('job_id')==$key)>{{ $value
+                        <option value="{{ $key }}" @selected(old('job')==$key)>{{ $value
                             }}</option>
                         @endforeach
                     </select>
@@ -109,8 +109,17 @@
                     <label for="gender">Gender</label>
                     <select class="form-select" name="gender" id="epartment">
                         <option value>Select Gender</option>
-                        <option value="0">Male</option>
-                        <option value="1">Female</option>
+                        @php
+                        $arr = [
+                        "Male",
+                        "Female"
+                        ];
+                        @endphp
+
+                        @foreach ($arr as $key=>$value)
+                        <option value="{{ $key }}" @selected(old('gender')==$key)>{{ $value }}
+                        </option>
+                        @endforeach
                     </select>
                     @error("gender")
                     <small class="form-text text-danger">{{ $message }}</small>
@@ -121,7 +130,7 @@
                 <div class="mb-4">
                     <label for="sallary">Sallary</label>
                     <input type="number" class="form-control" id="sallary"
-                        aria-describedby="sallary" name="sallary"  value="{{ old("sallary") }}">
+                        aria-describedby="sallary" name="sallary" value="{{ old("sallary") }}">
                     @error("sallary")
                     <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
@@ -133,9 +142,8 @@
             <div class="col-3">
                 <div class="mb-4">
                     <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address"
-                        aria-describedby="address" name="address" value="{{ old("address")
-                        }}">
+                    <input type="text" class="form-control" id="address" aria-describedby="address"
+                        name="address" value="{{ old("address") }}">
                     @error("address")
                     <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
@@ -144,9 +152,8 @@
             <div class="col-3">
                 <div class="mb-4">
                     <label for="number">Phone Number</label>
-                    <input type="text" class="form-control" id="number"
-                        aria-describedby="number" name="number" value="{{ old("number")
-                        }}">
+                    <input type="text" class="form-control" id="number" aria-describedby="number"
+                        name="number" value="{{ old("number") }}">
                     @error("number")
                     <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
