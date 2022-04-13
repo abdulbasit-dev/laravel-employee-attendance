@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -36,8 +37,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        $depts = Department::pluck('name', 'id');
-        return view("users.create", compact("depts"));
+        $jobs = Job::pluck('title', 'id');
+        return view("users.create", compact("jobs"));
     }
 
     /**
@@ -52,13 +53,18 @@ class UserController extends Controller
         $validator =  Validator::make(
             $request->all(),
             [
-                "title" => ['required', 'string', 'unique:users,title'],
-                "department_id" => ['required', 'exists:departments,id']
+                "first_name" => ['required', 'string'],
+                "last_name" => ['required', 'string'],
+                "email" => ['required', 'email'],
+                "password" => ['required'],
+                "job" => ['required'],
+                "gender" => ['required', 'string'],
+                "sallary" => ['required'],
+                "address" => ['required', 'string'],
+                "number" => ['required', 'string'],
             ],
-            [
-                "department_id.required" => "please select a department"
-            ]
         );
+
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -66,14 +72,20 @@ class UserController extends Controller
                 ->withInput();
         }
 
-
         User::create([
-            "title" => $request->title,
-            "department_id" => $request->department_id
+            "first_name" => $request->first_name,
+            "last_name" => $request->last_name,
+            "email" => $request->email,
+            "password" => $request->password,
+            "job_id" => $request->job,
+            "gender" => $request->gender,
+            "sallary" => $request->sallary,
+            "address" => $request->address,
+            "number" => $request->number,
         ]);
 
         return redirect()->route('users.index')->with([
-            "message" => "User Created Successfully",
+            "message" => "Employee Created Successfully",
             "title" => "Created",
             "icon" => "success",
         ]);
@@ -85,10 +97,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $job)
+    public function edit(User $user)
     {
-        $depts = Department::pluck('name', 'id');
-        return view("users.edit", compact("depts", 'job'));
+        $jobs = Department::pluck('name', 'id');
+        return view("users.edit", compact("jobs", 'job'));
     }
 
     /**
@@ -98,12 +110,12 @@ class UserController extends Controller
      * @param  \App\Models\User  $User
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $job)
+    public function update(Request $request, User $user)
     {
         $validator =  Validator::make(
             $request->all(),
             [
-                "title" => ['required', 'string', "unique:users,title," . $job->id . ",id"],
+                "title" => ['required', 'string', "unique:users,title," . $user->id . ",id"],
                 "department_id" => ['required', 'exists:departments,id']
             ],
             [
@@ -117,7 +129,7 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        $job->update([
+        $user->update([
             "title" => $request->title,
             "department_id" => $request->department_id
         ]);
@@ -132,12 +144,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $job
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $job)
+    public function destroy(User $user)
     {
-        $job->delete();
+        $user->delete();
         return redirect()->route('users.index')->with([
             "message" => "User Deleted Successfully",
             "title" => "Deleted",

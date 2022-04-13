@@ -18,15 +18,15 @@
                         </svg>
                     </a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{ route('jobs.index') }}">{{ $title
+                <li class="breadcrumb-item"><a href="{{ route('users.index') }}">{{ $title
                         }}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Create</li>
             </ol>
         </nav>
-        <h2 class="h4">Create New {{ $title }}s</h2>
+        <h2 class="h4">Add New {{ $title }}s</h2>
     </div>
     <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="{{ route('jobs.index') }}"
+        <a href="{{ route('users.index') }}"
             class="btn btn-sm btn-gray-300 d-inline-flex align-items-center animate-left-5">
             <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
@@ -39,16 +39,27 @@
 </div>
 
 <div class="card card-body border-0 shadow table-wrapper table-responsive">
-    <form action="{{ route('jobs.store') }}" method="POST">
+    <form action="{{ route('users.store') }}" method="POST">
         @csrf
         <div class="row">
-            <div class="col-6">
+            <div class="col-3">
                 <div class="mb-4">
-                    <label for="name">Job Title</label>
-                    <input type="name" class="form-control" id="title" aria-describedby="title"
-                        name="title" value="{{ old("title") }}">
-                    @error("title")
-                    <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old("first_name")
+                        }}">
+                    @error("first_name")
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-4">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" class="form-control" id="last_name"
+                        aria-describedby="last_name" name="last_name" value="{{ old("last_name")
+                        }}">
+                    @error("last_name")
+                    <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
@@ -56,15 +67,88 @@
         <div class="row">
             <div class="col-6">
                 <div class="mb-4">
-                    <label for="department">Department</label>
-                    <select class="form-select" name="department_id" id="epartment">
-                        <option value>Select Department</option>
-                        @foreach ($depts as $key=>$value)
-                        <option value="{{ $key }}" @selected(old('department_id') == $key)>{{ $value }}</option>
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="email"
+                        name="email" value="{{ old("email") }}" placeholder="">
+                    @error("email")
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="mb-4">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password"
+                        aria-describedby="password" name="password" value="{{ old("password") }}">
+                    @error("password")
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="mb-4">
+                    <label for="job">Job</label>
+                    <select class="form-select" name="job" id="job">
+                        <option value>Select Job</option>
+                        @foreach ($jobs as $key=>$value)
+                        <option value="{{ $key }}" @selected(old('job_id')==$key)>{{ $value
+                            }}</option>
                         @endforeach
                     </select>
-                    @error("department_id")
-                    <small id="emailHelp" class="form-text text-danger">{{ $message }}</small>
+                    @error("job")
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="mb-4">
+                    <label for="gender">Gender</label>
+                    <select class="form-select" name="gender" id="epartment">
+                        <option value>Select Gender</option>
+                        <option value="0">Male</option>
+                        <option value="1">Female</option>
+                    </select>
+                    @error("gender")
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="mb-4">
+                    <label for="sallary">Sallary</label>
+                    <input type="number" class="form-control" id="sallary"
+                        aria-describedby="sallary" name="sallary"  value="{{ old("sallary") }}">
+                    @error("sallary")
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                <div class="mb-4">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address"
+                        aria-describedby="address" name="address" value="{{ old("address")
+                        }}">
+                    @error("address")
+                    <small class="form-text text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="mb-4">
+                    <label for="number">Phone Number</label>
+                    <input type="text" class="form-control" id="number"
+                        aria-describedby="number" name="number" value="{{ old("number")
+                        }}">
+                    @error("number")
+                    <small class="form-text text-danger">{{ $message }}</small>
                     @enderror
                 </div>
             </div>
