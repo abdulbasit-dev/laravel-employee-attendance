@@ -57,10 +57,11 @@
             </li>
 
 
+            {{-- USER ROUTES  --}}
             @if (!auth()->user()->is_admin)
 
-            <li class="nav-item {{ Request::routeIs(" admin.jobs.*") ? 'active' : '' }}">
-                <a href="{{ route('departments.index') }}" class="nav-link">
+            <li class="nav-item {{ Request::routeIs("profile") ? 'active' : '' }}">
+                <a href="{{ route('profile') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

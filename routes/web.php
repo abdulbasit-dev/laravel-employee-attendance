@@ -12,7 +12,6 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\ResetPassword;
 use App\Http\Livewire\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Profile;
 use App\Http\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +35,7 @@ Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/profile', Profile::class)->name('profile');
+    Route::view('/profile', 'profile')->name('profile');
 
     // Admin Routes 
     Route::middleware('is_admin')->group(function () {

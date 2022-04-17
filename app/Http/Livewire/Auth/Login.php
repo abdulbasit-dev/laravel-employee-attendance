@@ -41,6 +41,13 @@ class Login extends Component
         }
     }
 
+    public function randomeUser()
+    {
+        $user = User::whereIsAdmin(0)->inRandomOrder()->first();
+        $this->email = $user->email;
+        $this->password = "password";
+    }
+
     public function render()
     {
         return view('livewire.auth.login')->layout('layouts.guest');

@@ -15,7 +15,7 @@
                                 <p class="mb-0">Sign in with these credentials:</p>
                                 <p class="mb-0"> Email: <strong>admin@test.com</strong> Password:
                                     <strong>password</strong></p>
-
+                                    <button class="btn btn-gray-700 mt-3" wire:click="randomeUser"> Get Random User</button>
                             </p>
                         </div>
                         <form wire:submit.prevent="login" action="#" class="mt-4" method="POST">

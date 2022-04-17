@@ -43,6 +43,7 @@
             <tr>
                 <th class="border-gray-200">#</th>
                 <th class="border-gray-200">Full Name</th>
+                <th class="border-gray-200">Email</th>
                 <th class="border-gray-200">Job</th>
                 <th class="border-gray-200">Department</th>
                 <th class="border-gray-200">Created At</th>
@@ -56,6 +57,7 @@
             <tr>
                 <td class="fw-bold">{{ $loop->iteration }}</td>
                 <td><span class="fw-normal"><a href="{{ route('users.show', $user->id) }}">{{ $user->first_name . " ". $user->last_name }} </a></span></td>
+                <td><span class="fw-normal">{{ $user->email}}</span></td>
                 <td><span class="fw-normal text-success">{{ $user->job->title??"Null" }}</span></td>
                 <td><span class="fw-normal text-info">{{ $user->job->department->name??"Null" }}</span></td>
                 <td><span class="fw-normal">{{ $user->created_at }}</span></td>

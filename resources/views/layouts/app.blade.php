@@ -45,7 +45,7 @@
 
     @livewireStyles
 
-    @livewireScripts
+   
 
     <!-- Core -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -106,10 +106,10 @@
         @yield("content")
     </main>
 
+    @livewireScripts
 
     {{-- sweetalert2 --}}
     <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-
 
     @stack('scripts')
     {{-- sweetalert2 message --}}
