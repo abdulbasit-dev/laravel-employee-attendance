@@ -42,5 +42,8 @@ Route::middleware('auth')->group(function () {
         Route::resource("departments", DepartmentController::class)->except("show");
         Route::resource("jobs", JobController::class)->except("show");
         Route::resource("users", UserController::class);
+
+        Route::view('/attendances', 'attendance')->name('attendance');
+
     });
 });
