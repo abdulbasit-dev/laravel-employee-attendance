@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt("password"),
         ]);
 
-        foreach (range(1, 50) as $item) {
+        foreach (range(1, 10) as $item) {
             $fname =  Str::lower($array[rand(0, count($array) - 1)]);
             $lname =  Str::lower($array[rand(0, count($array) - 1)]);
 

@@ -58,4 +58,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Job::class);
     }
+
+    public function attendance()
+    {
+        return $this->hasOne(Attendance::class)->orderByDesc("created_at");
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

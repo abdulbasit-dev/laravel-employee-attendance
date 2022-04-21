@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    AttendanceController,
     JobController,
     DepartmentController,
     UserController,
@@ -42,8 +43,6 @@ Route::middleware('auth')->group(function () {
         Route::resource("departments", DepartmentController::class)->except("show");
         Route::resource("jobs", JobController::class)->except("show");
         Route::resource("users", UserController::class);
-
-        Route::view('/attendances', 'attendance')->name('attendance');
-
+        Route::get('/attendances', [AttendanceController::class, "takeAttendance"])->name('take-attendance');
     });
 });

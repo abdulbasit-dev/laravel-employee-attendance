@@ -134,8 +134,8 @@
                 </a>
             </li>
 
-            <li class="nav-item {{ Request::routeIs("attendance") ? 'active' : '' }}">
-                <a href="{{ route('attendance') }}" class="nav-link">
+            <li class="nav-item {{ Request::routeIs("take-attendance") ? 'active' : '' }}">
+                <a href="{{ route('take-attendance') }}" class="nav-link">
                     <span class="sidebar-icon">
                         <svg class="icon icon-xs me-2" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
