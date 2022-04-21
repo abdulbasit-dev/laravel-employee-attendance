@@ -4,7 +4,6 @@
     <thead>
       <tr>
         <th class="border-gray-200">#</th>
-        <th class="border-gray-200">ID</th>
         <th class="border-gray-200">Full Name</th>
         <th class="border-gray-200">Job</th>
         <th class="border-gray-200">Department</th>
@@ -17,7 +16,6 @@
       @forelse ($users as $user)
         <tr>
           <td class="fw-bold">{{ $loop->iteration }}</td>
-          <td><span class="fw-normal text-success">{{ $user->id }}</span></td>
           <td><span class="fw-normal"><a href="{{ route('users.show', $user->id) }}">{{ $user->first_name . ' ' . $user->last_name }} </a></span></td>
           <td><span class="fw-normal text-success">{{ $user->job->title ?? 'Null' }}</span></td>
           <td><span class="fw-normal text-info">{{ $user->job->department->name ?? 'Null' }}</span></td>
