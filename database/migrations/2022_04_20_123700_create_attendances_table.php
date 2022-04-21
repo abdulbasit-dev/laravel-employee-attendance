@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->nullOnDelete()->constrained();
+            $table->foreignId("user_id")->constrained("users", "id")
+                ->onDelete('cascade');
             $table->integer("status")->coment('0=>at work, 1=>absent, 2=>late');
             $table->timestamps();
         });

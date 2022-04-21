@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('job', 'job.department')->orderByDesc("created_at")->paginate(10);
+        $users = User::with('job', 'job.department')->whereIsAdmin(0)->orderByDesc("created_at")->paginate(15);
         return view("users.index", compact("users"));
     }
 
