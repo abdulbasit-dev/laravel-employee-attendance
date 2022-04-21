@@ -1,4 +1,5 @@
 <div class="card card-body table-wrapper table-responsive border-0 shadow">
+    <h2 class="text-center text-muted mb-3">{{ \Carbon\Carbon::today()->format("l, F d, Y") }}</h2>
   <table class="table-hover table">
     <thead>
       <tr>

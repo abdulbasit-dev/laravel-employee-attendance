@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::resource("departments", DepartmentController::class)->except("show");
         Route::resource("jobs", JobController::class)->except("show");
         Route::resource("users", UserController::class);
-        Route::get('/attendances', [AttendanceController::class, "takeAttendance"])->name('take-attendance');
+        Route::get('/attendances', [AttendanceController::class, "index"])->name('attendances.index');
+        Route::get('/take-attendance', [AttendanceController::class, "takeAttendance"])->name('attendances.take-attendance');
     });
 });
