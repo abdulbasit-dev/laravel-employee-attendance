@@ -1,6 +1,6 @@
 @extends("layouts.app")
 @php
-$title = 'Emplloyee Attendances';
+$title = 'User Attendances';
 @endphp
 @section('title', $title . 's')
 
@@ -25,7 +25,7 @@ $title = 'Emplloyee Attendances';
       </nav>
       <h2 class="h4">All {{ $title }}s</h2>
     </div>
-    <div class="btn-toolbar mb-md-0 mb-2">
+    {{-- <div class="btn-toolbar mb-md-0 mb-2">
       <a href="{{ route('attendances.take-attendance') }}" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center animate-up-2">
         <svg class="icon icon-xs me-2" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd"
@@ -35,46 +35,37 @@ $title = 'Emplloyee Attendances';
         </svg>
         Take Attendance
       </a>
-    </div>
+    </div> --}}
 
   </div>
 
   <div class="card card-body table-wrapper table-responsive border-0 shadow">
-    <h2 class="text-muted mb-3 text-center">{{ \Carbon\Carbon::today()->format('l, F d, Y') }}</h2>
+    @if (!auth()->user()->is_admin)
+      <h2 class="text-muted mb-3 text-center">{{ $user->first_name . ' ' . $user->last_name }}</h2>
+    @endif
     <table class="table-hover table">
       <thead>
         <tr>
           <th class="border-gray-200">#</th>
-          <th class="border-gray-200">Full Name</th>
-          <th class="border-gray-200">Job</th>
-          <th class="border-gray-200">Department</th>
+          <th class="border-gray-200">Day</th>
+          <th class="border-gray-200">Date</th>
           <th class="border-gray-200">Status</th>
-          <th class="border-gray-200">Action</th>
+          @if (!auth()->user()->is_admin)
+            <th class="border-gray-200">Action</th>
+          @endif
         </tr>
       </thead>
       <tbody>
 
-        @forelse ($users as $user)
+        @forelse ($user->attendances as $attendance)
           <tr>
             <td class="fw-bold">{{ $loop->iteration }}</td>
-            <td><span class="fw-normal"><a href="{{ route('users.show', $user->id) }}">{{ $user->first_name . ' ' . $user->last_name }} </a></span></td>
-            <td><span class="fw-normal text-success">{{ $user->job->title ?? 'Null' }}</span></td>
-            <td><span class="fw-normal text-info">{{ $user->job->department->name ?? 'Null' }}</span></td>
-            <td><span class="fw-normal">{!! $user->attendance ? "<span class='badge bg-info'>" . $user->attendance->status . '</span>' : "<span class='text-danger'>Null</span>" !!}</span></td>
-              <td>
-                        <div class="btn-group">
-                            <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="icon icon-sm">
-                                    <span class="fas fa-ellipsis-h icon-dark"></span>
-                                </span>
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu py-0">
-                                <a class="dropdown-item" href="{{ route('attendances.user-attendance') }}"><span class="fas fa-user me-2"></span>Full User Attendance</a>
-                            </div>
-                        </div>
-                    </td>
+            <td><span class="fw-normal">{{ $attendance->created_at->format('l') }}</span></td>
+            <td><span class="fw-normal">{{ $attendance->created_at->format('F d, Y') }}</span></td>
+            <td><span class="fw-normal"><span class='badge bg-info'> {{ $attendance->status }}</span></td>
+            @if (!auth()->user()->is_admin)
+              <td><button class="btn me-3 btn-sm btn-warning">Complain</button></td>
+            @endif
           </tr>
         @empty
         @endforelse
@@ -83,8 +74,5 @@ $title = 'Emplloyee Attendances';
 
       </tbody>
     </table>
-    <div class="card-footer mt-3 border-0 px-3">
-      {{ $users->links() }}
-    </div>
   </div>
 @endsection

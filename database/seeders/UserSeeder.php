@@ -30,13 +30,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt("password"),
         ]);
 
-        DB::table("users")->insert([
-            'first_name' => 'sara',
-            'last_name' => 'User',
-            'email' => 'sara@test.com',
-            'password' => bcrypt("password"),
-        ]);
-
         foreach (range(1, 10) as $item) {
             $fname =  Str::lower($array[rand(0, count($array) - 1)]);
             $lname =  Str::lower($array[rand(0, count($array) - 1)]);

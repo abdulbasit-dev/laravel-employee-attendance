@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::view('/profile', 'profile')->name('profile');
 
+    Route::get('/user-attendance', [AttendanceController::class, "userAttendance"])->name('attendances.user-attendance');
+
     // Admin Routes 
     Route::middleware('is_admin')->group(function () {
         Route::resource("departments", DepartmentController::class)->except("show");

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,4 +24,12 @@ class AttendanceController extends Controller
         ])->whereIsAdmin(0)->get();
         return view('attendances.take-attendance', compact("users"));
     }
+
+    public function userAttendance()
+    {
+        $user = User::query()->where('id', auth()->id())->with("attendances")->first();
+        return view('attendances.user-attendance', compact("user"));
+    }
+
+    
 }
