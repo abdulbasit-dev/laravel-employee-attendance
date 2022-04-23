@@ -35,13 +35,14 @@ Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
 Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')->middleware('signed');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+
     Route::view('/profile', 'profile')->name('profile');
 
     Route::get('/user-attendance/{user}', [AttendanceController::class, "userAttendance"])->name('attendances.user-attendance');
 
     // Admin Routes 
     Route::middleware('is_admin')->group(function () {
+        Route::get('/dashboard', Dashboard::class)->name('dashboard');
         Route::resource("departments", DepartmentController::class)->except("show");
         Route::resource("jobs", JobController::class)->except("show");
         Route::resource("users", UserController::class);
