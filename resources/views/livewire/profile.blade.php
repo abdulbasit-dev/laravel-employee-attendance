@@ -1,6 +1,6 @@
 @section("title",$title)
 <div>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+    {{-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
         <div>
             <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -120,8 +120,8 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="row">
+    </div> --}}
+    <div class="row mt-5">
         <div class="col-12 col-xl-8">
             @if($showSavedAlert)
             <div class="alert alert-success" role="alert">
@@ -209,21 +209,21 @@
                             data-background="../assets/img/profile-cover.jpg"></div>
                         <div class="card-body pb-5">
                             <img class="avatar-xl rounded-circle mx-auto mt-n7 mb-4"
-                                src="https://ui-avatars.com/api/?background=random&name={{  auth()->user()->first_name ? auth()->user()->first_name . ' ' . auth()->user()->last_name:"
+                                src="https://ui-avatars.com/api/?background=random&name={{  $user->first_name ? $user->first_name . ' ' . $user->last_name:"
                                 User Name" }}"
-                                alt="{{  auth()->user()->first_name ? auth()->user()->first_name . ' ' . auth()->user()->last_name:"
+                                alt="{{  $user->first_name ? $user->first_name . ' ' . $user->last_name:"
                                 User Name" }}">
                             <h4 class="h3">
-                                {{ auth()->user()->first_name ? auth()->user()->first_name . ' ' .
-                                auth()->user()->last_name : 'User Name'}}
+                                {{ $user->first_name ? $user->first_name . ' ' .
+                                $user->last_name : 'User Name'}}
                             </h4>
-                            @if (auth()->user()->is_admin)
+                            @if ($user->is_admin)
                             <h5 class="fw-normal">System Admin</h5>
                             @else
-                            <h5 class="fw-normal">Senior Software Engineer</h5>
-                            <p class="text-gray mb-4">New York, USA</p>
+                            <h5 class="fw-normal">{{ $user->job->title }}</h5>
+                            <p class="text-gray mb-4">{{ $user->address }}</p>
                             @endif
-                            <a class="btn btn-sm btn-gray-800 d-inline-flex align-items-center me-2"
+                            {{-- <a class="btn btn-sm btn-gray-800 d-inline-flex align-items-center me-2"
                                 href="#">
                                 <svg class="icon icon-xs me-1" fill="currentColor"
                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -233,7 +233,7 @@
                                 </svg>
                                 Connect
                             </a>
-                            <a class="btn btn-sm btn-secondary" href="#">Send Message</a>
+                            <a class="btn btn-sm btn-secondary" href="#">Send Message</a> --}}
                         </div>
                     </div>
                 </div>

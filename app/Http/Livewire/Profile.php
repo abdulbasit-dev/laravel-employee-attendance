@@ -28,10 +28,10 @@ class Profile extends Component
         ];
     }
 
-    // public function mount()
-    // {
-    //     $this->user = auth()->user();
-    // }
+    public function mount()
+    {
+        $this->user = auth()->user();
+    }
 
     public function save()
     {
@@ -39,15 +39,14 @@ class Profile extends Component
         $this->validate();
 
         $this->user->save();
+        $this->user->refresh();
 
         $this->showSavedAlert = true;
         
-        $this->user = auth()->user();
     }
 
     public function render()
     {
-        $this->user = auth()->user();
         return view('livewire.profile');
     }
 }
