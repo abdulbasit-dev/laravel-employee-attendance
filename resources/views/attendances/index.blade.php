@@ -61,20 +61,19 @@ $title = 'Emplloyee Attendances';
             <td><span class="fw-normal text-success">{{ $user->job->title ?? 'Null' }}</span></td>
             <td><span class="fw-normal text-info">{{ $user->job->department->name ?? 'Null' }}</span></td>
             <td><span class="fw-normal">{!! $user->attendance ? "<span class='badge bg-info'>" . $user->attendance->status . '</span>' : "<span class='text-danger'>Null</span>" !!}</span></td>
-              <td>
-                        <div class="btn-group">
-                            <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="icon icon-sm">
-                                    <span class="fas fa-ellipsis-h icon-dark"></span>
-                                </span>
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                            </button>
-                            <div class="dropdown-menu py-0">
-                                <a class="dropdown-item" href="{{ route('attendances.user-attendance') }}"><span class="fas fa-user me-2"></span>Full User Attendance</a>
-                            </div>
-                        </div>
-                    </td>
+            <td>
+              <div class="btn-group">
+                <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="icon icon-sm">
+                    <span class="fas fa-ellipsis-h icon-dark"></span>
+                  </span>
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu py-0">
+                  <a class="dropdown-item" href="{{ route('attendances.user-attendance', $user->id) }}"><span class="fas fa-user me-2"></span>Full User Attendance</a>
+                </div>
+              </div>
+            </td>
           </tr>
         @empty
         @endforelse

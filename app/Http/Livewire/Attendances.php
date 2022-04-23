@@ -25,7 +25,11 @@ class Attendances extends Component
 
     public function render()
     {
-        $users = User::query()->with("attendance")->whereIsAdmin(0)->paginate(15);
+        $users = User::query()->with([
+            "attendance" => function ($q) {
+                $q->whereDate("created_at", Carbon::today())->get();
+            }
+        ])->whereIsAdmin(0)->paginate(15);
         return view('livewire.attendances', compact("users"));
     }
 

@@ -40,9 +40,10 @@ $title = 'User Attendances';
   </div>
 
   <div class="card card-body table-wrapper table-responsive border-0 shadow">
-    @if (!auth()->user()->is_admin)
+    <h2 class="text-muted mb-3 text-center">{{ $user->first_name . ' ' . $user->last_name }}</h2>
+    {{-- @if (!auth()->user()->is_admin)
       <h2 class="text-muted mb-3 text-center">{{ $user->first_name . ' ' . $user->last_name }}</h2>
-    @endif
+    @endif --}}
     <table class="table-hover table">
       <thead>
         <tr>
