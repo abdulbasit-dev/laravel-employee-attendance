@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login');
+// Route::redirect('/', '/login');
 Route::get('/register', Register::class)->name('register');
 Route::get('/login', Login::class)->name('login');
 Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
 
     // Admin Routes 
     Route::middleware('is_admin')->group(function () {
-        Route::get('/dashboard', Dashboard::class)->name('dashboard');
+        Route::get('/', Dashboard::class)->name('dashboard');
         Route::resource("departments", DepartmentController::class)->except("show");
         Route::resource("jobs", JobController::class)->except("show");
         Route::resource("users", UserController::class);
