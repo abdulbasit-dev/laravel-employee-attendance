@@ -37,7 +37,6 @@ Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')
 Route::middleware('auth')->group(function () {
 
     Route::view('/profile', 'profile')->name('profile');
-
     Route::get('/user-attendance/{user}', [AttendanceController::class, "userAttendance"])->name('attendances.user-attendance');
 
     // Admin Routes 

@@ -36,9 +36,9 @@ class Login extends Component
             $user = User::where(['email' => $this->email])->first();
             auth()->login($user, $this->remember_me);
             if (!$user->is_admin) {
-                return redirect()->route('attendances.user-attendance', $user->id);
+                return redirect()->route('profile');
             }
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/');
         } else {
             return $this->addError('email', trans('auth.failed'));
         }
