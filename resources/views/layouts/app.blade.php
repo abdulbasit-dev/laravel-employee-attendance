@@ -47,7 +47,7 @@
   @include('layouts.sidenav')
   <main class="content">
     {{-- TopBar --}}
-    @include('layouts.topbar')
+    <livewire:top-bar />
     @yield("content")
   </main>
 

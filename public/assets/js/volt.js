@@ -77,12 +77,12 @@ d.addEventListener("DOMContentLoaded", function(event) {
         });
     }
 
-    var iconNotifications = d.querySelector('.notification-bell');
-    if (iconNotifications) {
-        iconNotifications.addEventListener('shown.bs.dropdown', function () {
-            iconNotifications.classList.remove('unread');
-        });
-    }
+    // var iconNotifications = d.querySelector('.notification-bell');
+    // if (iconNotifications) {
+    //     iconNotifications.addEventListener('shown.bs.dropdown', function () {
+    //         iconNotifications.classList.remove('unread');
+    //     });
+    // }
 
     [].slice.call(d.querySelectorAll('[data-background]')).map(function(el) {
         el.style.background = 'url(' + el.getAttribute('data-background') + ')';
