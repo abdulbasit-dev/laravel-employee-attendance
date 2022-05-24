@@ -21,7 +21,7 @@
           <td><span class="fw-normal text-info">{{ $user->job->department->name ?? 'Null' }}</span></td>
           <td><span class="fw-normal">{!! $user->attendance ? "<span class='badge bg-info'>" . $user->attendance->status . '</span>' : "<span class='text-danger'>Null</span>" !!}</span></td>
           <td class="inline-flex">
-            <button style="font-size:0.8rem; padding:0.1 rem 0.2" class="btn me-3 btn-sm btn-warning" wire:click='attendance({{ $user->id }},0)'>AtWork</button>
+            <button style="font-size:0.8rem; padding:0.1 rem 0.2" class="btn me-3 btn-sm btn-warning" wire:click='attendance({{ $user->id }},0)'>At Work</button>
             <button style="font-size:0.8rem; padding:0.1 rem 0.2" class="btn me-3 btn-sm btn-danger" wire:click='attendance({{ $user->id }},1)'>Absent</button>
             <button style="font-size:0.8rem; padding:0.1 rem 0.2" class="btn me-3 btn-sm btn-gray-200" wire:click='attendance({{ $user->id }},2)'>Late</button>
           </td>
