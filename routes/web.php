@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::view('/profile', 'profile')->name('profile');
     Route::get('/user-attendance/{user}', [AttendanceController::class, "userAttendance"])->name('attendances.user-attendance');
+    Route::post('/attendance-complain/{attendance}', [AttendanceController::class, "attendanceComplain"])->name('attendances.attendanceComplain');
 
     // Admin Routes 
     Route::middleware('is_admin')->group(function () {

@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Attendance;
 use App\Models\User;
-use App\Notifications\AdminAttendanceNotification;
+use App\Notifications\EmployeeAttendanceNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
@@ -40,7 +40,8 @@ class Attendances extends Component
         // 0 => AtWork
         // 1 => Absent
         // 2 => Late
-
+        
+        // find user
         $user = User::find($userId);
 
         //if admin click twice attendace for a user delete the old one;
@@ -57,12 +58,7 @@ class Attendances extends Component
             //only delete todays notification when admin change its mind about the user attendance
             $user->notifications()->whereDate('created_at', Carbon::today())->delete();
 
-            Notification::send($user, new AdminAttendanceNotification($user, $action));
+            Notification::send($user, new EmployeeAttendanceNotification($user, $action));
         }
-
-        //implemt
-        // becouse the notification is for user add flag 0 in "for" column in notifaction table 
-        // but if user request change on his attendace then make "for" flag to 1 mean that notification from user to admin 
-
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminAttendanceNotification extends Notification
+class EmployeeAttendanceNotification extends Notification
 {
     use Queueable;
 
@@ -19,9 +19,9 @@ class AdminAttendanceNotification extends Notification
     public function __construct($user, $action)
     {
         $this->user = $user;
-        if($action===1){
+        if ($action === 1) {
             $this->action = "Absent";
-        }else{
+        } else {
             $this->action = "Late";
         }
     }
@@ -46,10 +46,11 @@ class AdminAttendanceNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            "id"=>$this->user->id,
-            "name"=>$this->user->name,
-            "email"=>$this->user->email,
-            "action"=>$this->action,
+            "is_admin" => false,
+            "id" => $this->user->id,
+            "name" => $this->user->name,
+            "email" => $this->user->email,
+            "action" => $this->action,
         ];
     }
 }
