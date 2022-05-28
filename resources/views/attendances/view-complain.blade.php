@@ -63,25 +63,7 @@ $title = 'User Attendances';
         <div class="mt-3">
             <form action="{{ route('attendances.fix-complain', $notification->id) }}" method="POST">
                 @csrf
-                <div class="form-group mb-4">
-                    <label for="email">Change Attendance</label>
-                    @foreach ($statuses as $status)
-                    @if ($status===$notification->data["current_status"])
-                    @continue
-                    @endif
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status"
-                            id="{{ $status }}" value="{{$status}}" required>
-                        <label class="form-check-label" for="{{ $status }}">
-                            {{ $status }}
-                        </label>
-                    </div>
-                    @endforeach
-                </div>
-
-                <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-
-
+                <button type="submit" class="btn btn-sm btn-primary">Accept</button>
             </form>
         </div>
     </div>

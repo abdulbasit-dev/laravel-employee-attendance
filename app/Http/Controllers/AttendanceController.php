@@ -74,8 +74,23 @@ class AttendanceController extends Controller
                 return $query->where('id', $id);
             });
 
+        //NOTE
+        // 0 => At Work
+        // 1 => Absent
+        // 2 => Late
+
+        //convert status from word to number
+        $status = null;
+        if ($notification[0]->data['status'] === "At Work") {
+            $status = 0;
+        } elseif ($notification[0]->data['status'] === "Absent") {
+            $status = 1;
+        } else {
+            $status = 2;
+        }
+
         //find attendan and update
-        Attendance::where('id', $notification[0]->data['attendance_id'])->update(['status',$notification[0]->data['status']]);
+        Attendance::where('id', $notification[0]->data['attendance_id'])->update(['status' => $status]);
 
         //mark notification as read
         $notification->markAsRead();
