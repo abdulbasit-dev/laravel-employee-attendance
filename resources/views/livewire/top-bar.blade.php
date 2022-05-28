@@ -27,9 +27,11 @@
                             <div class="list-group-item border-bottom">
                                 <div class="row align-items-center">
                                     <div class="col ps-0 ms-2">
-                                        <div class="d-flex justify-content-between align-items-center">
+                                        <div
+                                            class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <h4 class="h6 text-small mb-0">{{ $notification->data['user_name'] }}</h4>
+                                                <h4 class="h6 text-small mb-0">{{
+                                                    $notification->data['user_name'] }}</h4>
                                             </div>
                                             <div class="text-end">
                                                 <small class="text-danger">{{
@@ -37,23 +39,29 @@
                                                     }}</small>
                                             </div>
                                         </div>
-                                
-                                        <div class="d-flex justify-content-between align-items-center">
+
+                                        <div
+                                            class="d-flex justify-content-between align-items-center">
                                             <div>
-                                              <p class="font-small mt-1 mb-0">Complain About its <br> Attendance 
-                                                    <strong>{{ $notification->data['status']
-                                                        }}</strong> on <br> <span class="text-info">{{
+                                                <p class="font-small mt-1 mb-0">Complain About its
+                                                    <br> Attendance
+                                                    <strong>{{ $notification->data['current_status']
+                                                        }}</strong> on <br> <span
+                                                        class="text-info">{{
                                                         $notification->created_at->format('l, F d,
                                                         Y') }}</span>.
                                                 </p>
                                             </div>
                                             <div class="text-end">
+                                                <a href="{{ route('attendances.view-complain', $notification->id) }}"
+                                                    class="text-info fw-bold">View</a>
+                                                <span class="text-muted">|</span>
                                                 <a href="" class="text-muted"
                                                     wire:click="markAsRead('{{ $notification->id }}')">Mark
                                                     as read</a>
                                             </div>
                                         </div>
-                                
+
                                     </div>
                                 </div>
                             </div>

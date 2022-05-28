@@ -48,5 +48,9 @@ Route::middleware('auth')->group(function () {
         Route::resource("users", UserController::class);
         Route::get('/attendances', [AttendanceController::class, "index"])->name('attendances.index');
         Route::get('/take-attendance', [AttendanceController::class, "takeAttendance"])->name('attendances.take-attendance');
+
+        //complian
+        Route::get('/view-complain/{id}', [AttendanceController::class, "viewComplain"])->name('attendances.view-complain');
+        Route::post('/fix-complain/{id}', [AttendanceController::class, "fixComplain"])->name('attendances.fix-complain');
     });
 });

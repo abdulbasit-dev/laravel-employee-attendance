@@ -78,6 +78,8 @@ $title = 'User Attendances';
                                 method="POST">
                                 @csrf
 
+                                <input type="hidden"  name="current_status" value="{{ $attendance->status }}">
+
                 
                                 <div class="form-group mb-4">
                                     <label for="email">Select Status</label>

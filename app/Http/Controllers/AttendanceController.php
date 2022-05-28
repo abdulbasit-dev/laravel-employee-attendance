@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Notifications\AdminAttendanceComplainNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 
 class AttendanceController extends Controller
@@ -46,6 +47,42 @@ class AttendanceController extends Controller
         return redirect()->back()->with([
             "message" => "Complain Successfully Sent",
             "title" => "Sent",
+            "icon" => "success",
+        ]);
+    }
+
+    public function viewComplain($id)
+    {
+        $statuses = ["At Work", "Absent", "Late"];
+
+        $notification = auth()->user()
+            ->notifications
+            ->when($id, function ($query) use ($id) {
+                return $query->where('id', $id);
+            })[0];
+
+        return view('attendances.view-complain', compact("notification", 'statuses'));
+    }
+
+
+    public function fixComplain(Request $request, $id)
+    {
+        //get notification
+        $notification = auth()->user()
+            ->unreadNotifications
+            ->when($id, function ($query) use ($id) {
+                return $query->where('id', $id);
+            });
+
+        //find attendan and update
+        Attendance::where('id', $notification[0]->data['attendance_id'])->update(['status',$notification[0]->data['status']]);
+
+        //mark notification as read
+        $notification->markAsRead();
+
+        return redirect()->route('attendances.index')->with([
+            "message" => "Attendance Updated Successfully",
+            "title" => "Updated",
             "icon" => "success",
         ]);
     }

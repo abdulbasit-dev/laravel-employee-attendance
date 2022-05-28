@@ -52,9 +52,11 @@ class AdminAttendanceComplainNotification extends Notification
         return [
             "is_admin" => true,
             "user_name" => $this->attendance->user->first_name . " " . $this->attendance->user->last_name,
+            "current_status" => $this->request->current_status,
             "status" => $this->request->status,
-            "message" => $this->request->status,
-            "attendance" => $this->attendance,
+            "message" => $this->request->message,
+            "attendance_id" => $this->attendance->id,
+            "attendance_date" => $this->attendance->created_at,
         ];
     }
 }
