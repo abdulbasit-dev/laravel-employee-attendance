@@ -60,10 +60,16 @@ $title = 'User Attendances';
             </div>
         </div>
 
-        <div class="mt-3">
+        <div class="mt-3 d-flex">
             <form action="{{ route('attendances.fix-complain', $notification->id) }}" method="POST">
                 @csrf
+                <input type="hidden" name="result" value="accept">
                 <button type="submit" class="btn btn-sm btn-primary">Accept</button>
+            </form>
+            <form action="{{ route('attendances.fix-complain', $notification->id) }}" method="POST" class="ms-3">
+                @csrf
+                <input type="hidden" name="result" value="reject">
+                <button type="submit" class="btn btn-sm btn-primary">Reject</button>
             </form>
         </div>
     </div>

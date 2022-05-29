@@ -99,7 +99,7 @@
   @if (Session::has('message'))
     <script>
       Swal.fire({
-        timer: 1500,
+        timer: 2500,
         icon: "{{ Session::get('icon') }}",
         title: "{{ Session::get('title') }}",
         text: "{{ Session::get('message') }}",

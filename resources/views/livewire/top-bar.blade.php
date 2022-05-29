@@ -84,16 +84,15 @@
 
                                         <div
                                             class="d-flex justify-content-between align-items-center">
-                                            <div>
-                                                <p class="font-small mt-1 mb-0">You Are Assigned As
-                                                    <strong>{{ $notification->data['action']
-                                                        }}</strong> on <br> <span
-                                                        class="text-info">{{
+                                            <div style="flex:3">
+                                                <p class="font-small mt-1 mb-0">{{
+                                                    $notification->data['message']}}
+                                                    on <span class="text-info">{{
                                                         $notification->created_at->format('l, F d,
                                                         Y') }}</span>.
                                                 </p>
                                             </div>
-                                            <div class="text-end">
+                                            <div class="text-end" style="flex:2">
                                                 <a href="" class="text-muted"
                                                     wire:click="markAsRead('{{ $notification->id }}')">Mark
                                                     as read</a>

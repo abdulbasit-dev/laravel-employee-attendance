@@ -6,6 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
+
+use function PHPSTORM_META\type;
 
 class EmployeeAttendanceNotification extends Notification
 {
@@ -16,13 +19,23 @@ class EmployeeAttendanceNotification extends Notification
      *
      * @return void
      */
-    public function __construct($user, $action)
+    public function __construct($user, $action, $message)
     {
         $this->user = $user;
-        if ($action === 1) {
-            $this->action = "Absent";
+        $this->message = $message;
+
+        Log::info('action: ' . $action);
+        $type = gettype($action);
+        Log::info("type: " . $type);
+        if ($type == "integer") {
+            Log::info("if statment");
+            if ($action === 1) {
+                $this->action = "Absent";
+            } else {
+                $this->action = "Late";
+            }
         } else {
-            $this->action = "Late";
+            $this->action = $action;
         }
     }
 
@@ -45,11 +58,11 @@ class EmployeeAttendanceNotification extends Notification
      */
     public function toArray($notifiable)
     {
+
         return [
             "is_admin" => false,
-            "id" => $this->user->id,
-            "name" => $this->user->name,
-            "email" => $this->user->email,
+            "user_id" => $this->user->id,
+            "message" => $this->message,
             "action" => $this->action,
         ];
     }
