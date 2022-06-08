@@ -45,6 +45,7 @@ class UserSeeder extends Seeder
                 'gender' => $item % 2 == 0 ? 0 : 1,
                 'number' => "750 425 8891",
                 'address' => "Erbil, center",
+                'sallary' => rand(500,1000),
                 'password' => bcrypt("password"),
             ]);
         }

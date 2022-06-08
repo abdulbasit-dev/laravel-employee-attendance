@@ -91,6 +91,11 @@ class UserController extends Controller
         ]);
     }
 
+    public function show(User $user)
+    {
+        return view("users.show", compact('user'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,9 +103,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
-    {
-        $jobs = Department::pluck('name', 'id');
-        return view("users.edit", compact("jobs", 'job'));
+    {        
+        $jobs = Job::pluck('title', 'id');
+        return view("users.edit", compact("jobs", 'user'));
     }
 
     /**
@@ -112,27 +117,44 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $validator =  Validator::make(
-            $request->all(),
-            [
-                "title" => ['required', 'string', "unique:users,title," . $user->id . ",id"],
-                "department_id" => ['required', 'exists:departments,id']
-            ],
-            [
-                "department_id.required" => "please select a department"
-            ]
-        );
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
+        if ($request->has("first_name")) {
+            $user->first_name = $request->first_name;
         }
 
-        $user->update([
-            "title" => $request->title,
-            "department_id" => $request->department_id
-        ]);
+        if ($request->has("last_name")) {
+            $user->last_name = $request->last_name;
+        }
+
+        if ($request->has("email")) {
+            $user->email = $request->email;
+        }
+
+        if ($request->has("password")) {
+            $user->password = bcrypt($request->password);
+        }
+
+        if ($request->has("job")) {
+            $user->job_id = $request->job;
+        }
+        
+        if ($request->has("sallary")) {
+            $user->sallary = $request->sallary;
+        }
+
+        if ($request->has("address")) {
+            $user->address = $request->address;
+        }
+
+        if ($request->has("number")) {
+            $user->number = $request->number;
+        }
+
+        if ($request->has("gender")) {
+            $user->gender = $request->gender;
+        }
+
+        $user->save();
 
         return redirect()->route('users.index')->with([
             "message" => "User Updated Successfully",

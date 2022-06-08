@@ -51,7 +51,7 @@
         @forelse ($users as $user)
           <tr>
             <td class="fw-bold">{{ $loop->iteration }}</td>
-            <td><span class="fw-normal">{{ $user->first_name . ' ' . $user->last_name }}</span></td>
+            <td><span class="fw-normal"><a href="{{ route('users.show',$user->id) }}">{{ $user->first_name . ' ' . $user->last_name }}</a></span></td>
             <td><span class="fw-normal">{{ $user->email }}</span></td>
             <td><span class="fw-normal text-success">{{ $user->job->title ?? 'Null' }}</span></td>
             <td><span class="fw-normal text-info">{{ $user->job->department->name ?? 'Null' }}</span></td>
@@ -65,6 +65,7 @@
                   <span class="visually-hidden">Toggle Dropdown</span>
                 </button>
                 <div class="dropdown-menu py-0">
+                  <a class="dropdown-item" href="{{ route('users.show', $user->id) }}"><span class="fas fa-eye me-2"></span>User Info</a>
                   <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}"><span class="fas fa-edit me-2"></span>Edit</a>
                   <form action="{{ route('users.destroy', $user->id) }}" method="POST" id="myForm_{{ $user->id }}">
                     @method("DELETE")

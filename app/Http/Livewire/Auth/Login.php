@@ -41,7 +41,9 @@ class Login extends Component
             }
             return redirect()->intended('/');
         } else {
-            return $this->addError('email', trans('auth.failed'));
+            session()->flash('login', 'email/password are incorrect');
+            return redirect()->route('login');
+         
         }
     }
 
