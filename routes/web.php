@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     JobController,
     DepartmentController,
     UserController,
+    AuthController
 };
 
 
@@ -30,7 +31,9 @@ use Illuminate\Support\Facades\Route;
 
 // Route::redirect('/', '/login');
 Route::get('/register', Register::class)->name('register');
-Route::get('/login', Login::class)->name('login');
+// Route::get('/login', Login::class)->name('login');
+Route::get('/login', [AuthController::class, "index"])->name('login');
+Route::post('/login', [AuthController::class, "login"])->name('login');
 Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
 Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')->middleware('signed');
 

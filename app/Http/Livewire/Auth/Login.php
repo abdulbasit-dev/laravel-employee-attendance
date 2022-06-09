@@ -23,10 +23,10 @@ class Login extends Component
         if (auth()->user()) {
             return redirect()->intended('/dashboard');
         }
-        $this->fill([
-            'email' => 'admin@test.com',
-            'password' => 'pass',
-        ]);
+        // $this->fill([
+        //     'email' => 'admin@test.com',
+        //     'password' => 'pass',
+        // ]);
     }
 
     // public function updated($propertyName)
@@ -37,7 +37,7 @@ class Login extends Component
 
     public function login()
     {
-        $credentials = $this->validate();
+        $this->validate();
         if (auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember_me)) {
             $user = User::where(['email' => $this->email])->first();
             auth()->login($user, $this->remember_me);
