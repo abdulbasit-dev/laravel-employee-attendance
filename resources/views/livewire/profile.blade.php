@@ -158,10 +158,14 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="gender">Gender</label>
-              <select wire:model="user.gender" class="form-select mb-0" id="gender" aria-label="Gender select example">
-                <option selected>Choose...</option>
-                <option value="0">Female</option>
-                <option value="1">Male</option>
+              <select wire:model="user.gender" class="form-select mb-0" id="gender">
+                @php
+                  $arr = ['Male', 'Female'];
+                @endphp
+                <option value>Select Gender</option>
+                @foreach ($arr as $key => $value)
+                  <option value="{{ $key }}" @selected(old('gender', $user->gender) == $key)>{{ $value }}</option>
+                @endforeach
               </select>
               @error('user.gender')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -183,8 +187,8 @@
 
             <div class="col-sm-3 mb-3">
               <div class="form-group">
-                <label for="ye">Number</label>
-                <input wire:model="user.number" class="form-control" id="number" type="text" placeholder="phone number">
+                <label for="number">Number</label>
+                <input wire:model="user.number" class="form-control" id="number" type="tel" placeholder="phone number">
               </div>
               @error('user.number')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -209,11 +213,11 @@
                 src="https://ui-avatars.com/api/?background=random&name={{ $user->first_name
                     ? $user->first_name . ' ' . $user->last_name
                     : "
-                                                                User Name" }}"
+                                                                                                User Name" }}"
                 alt="{{ $user->first_name
                     ? $user->first_name . ' ' . $user->last_name
                     : "
-                                                                User Name" }}">
+                                                                                                User Name" }}">
               <h4 class="h3">
                 {{ $user->first_name ? $user->first_name . ' ' . $user->last_name : 'User Name' }}
               </h4>

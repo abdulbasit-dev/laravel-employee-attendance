@@ -24,7 +24,7 @@ class Profile extends Component
             'user.email' => 'email',
             'user.gender' => ['required', Rule::in([0, 1])],
             'user.address' => 'max:40',
-            // 'user.number' => 'numeric',
+            'user.number' => ['required', 'min:7'],
         ];
     }
 
@@ -42,7 +42,6 @@ class Profile extends Component
         $this->user->refresh();
 
         $this->showSavedAlert = true;
-        
     }
 
     public function render()
