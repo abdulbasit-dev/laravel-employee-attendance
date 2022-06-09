@@ -7,14 +7,13 @@ use Livewire\Component;
 
 class Login extends Component
 {
-
-    public $email = '';
-    public $password = '';
+    public $email;
+    public $password;
     public $remember_me = false;
     public $title = "Login";
 
     protected $rules = [
-        'email' => 'required|email:rfc,dns',
+        'email' => 'required|email',
         'password' => 'required|min:6',
     ];
 
@@ -26,9 +25,15 @@ class Login extends Component
         }
         $this->fill([
             'email' => 'admin@test.com',
-            'password' => 'password',
+            'password' => 'pass',
         ]);
     }
+
+    // public function updated($propertyName)
+    // {
+    //     $this->validateOnly($propertyName);
+    // }
+
 
     public function login()
     {
@@ -41,9 +46,9 @@ class Login extends Component
             }
             return redirect()->intended('/');
         } else {
-            session()->flash('login', 'email/password are incorrect');
-            return redirect()->route('login');
-         
+            return $this->addError('email', trans('auth.failed'));
+            // session()->flash('login', 'email/password are incorrect');
+            // return redirect()->route('login');
         }
     }
 

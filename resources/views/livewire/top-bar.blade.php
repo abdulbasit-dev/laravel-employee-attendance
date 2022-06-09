@@ -134,8 +134,7 @@
                             <div
                                 class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
                                 <span class="font-small fw-bold mb-0 text-gray-900">{{
-                                    auth()->user()->first_name ? auth()->user()->first_name . ' ' .
-                                    auth()->user()->last_name : 'User Name' }}</span>
+                                    auth()->user()->first_name ? auth()->user()->full_name : 'User Name' }}</span>
                             </div>
                         </div>
                     </a>
