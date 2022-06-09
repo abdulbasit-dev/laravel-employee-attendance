@@ -129,8 +129,8 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="media d-flex align-items-center">
                             <img class="avatar rounded-circle"
-                                src="https://ui-avatars.com/api/?background=random&name={{ auth()->user()->first_name ? auth()->user()->first_name . ' ' . auth()->user()->last_name : 'User Name' }}"
-                                alt="{{ auth()->user()->first_name ? auth()->user()->first_name . ' ' . auth()->user()->last_name : 'User Name' }}">
+                                src="https://ui-avatars.com/api/?background=random&name={{ auth()->user()->first_name ? auth()->user()->full_name: 'User Name' }}"
+                                alt="{{ auth()->user()->first_name ? auth()->user()->full_name : 'User Name' }}">
                             <div
                                 class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
                                 <span class="font-small fw-bold mb-0 text-gray-900">{{

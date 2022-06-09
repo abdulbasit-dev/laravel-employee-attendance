@@ -29,7 +29,7 @@ $title = 'User Attendances';
 </div>
 
 <div class="card card-body table-wrapper table-responsive border-0 shadow">
-    <h2 class="text-muted mb-3 text-center">{{ $user->first_name . ' ' . $user->last_name }}</h2>
+    <h2 class="text-muted mb-3 text-center">{{ $user->full_name }}</h2>
     <table class="table-hover table">
         <thead>
             <tr>

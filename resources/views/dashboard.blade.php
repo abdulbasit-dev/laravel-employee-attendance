@@ -163,7 +163,7 @@
                   @forelse ($users as $user)
                     <tr>
                       <td class="fw-bold">{{ $loop->iteration }}</td>
-                      <td><span class="fw-normal">{{ $user->first_name . ' ' . $user->last_name }}</span></td>
+                      <td><span class="fw-normal">{{ $user->full_name }}</span></td>
                       <td><span class="fw-normal">{{ $user->email }}</span></td>
                       <td><span class="fw-normal text-success">{{ $user->job->title ?? 'Null' }}</span></td>
                       <td><span class="fw-normal text-info">{{ $user->job->department->name ?? 'Null' }}</span></td>

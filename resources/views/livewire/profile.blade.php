@@ -211,15 +211,15 @@
             <div class="card-body pb-5">
               <img class="avatar-xl rounded-circle mt-n7 mx-auto mb-4"
                 src="https://ui-avatars.com/api/?background=random&name={{ $user->first_name
-                    ? $user->first_name . ' ' . $user->last_name
+                    ? $user->full_name
                     : "
                                                                                                 User Name" }}"
                 alt="{{ $user->first_name
-                    ? $user->first_name . ' ' . $user->last_name
+                    ? $user->full_name
                     : "
                                                                                                 User Name" }}">
               <h4 class="h3">
-                {{ $user->first_name ? $user->first_name . ' ' . $user->last_name : 'User Name' }}
+                {{ $user->first_name ? $user->full_name : 'User Name' }}
               </h4>
               @if ($user->is_admin)
                 <h5 class="fw-normal">System Admin</h5>
