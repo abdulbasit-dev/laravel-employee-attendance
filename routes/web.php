@@ -33,7 +33,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/register', Register::class)->name('register');
 // Route::get('/login', Login::class)->name('login');
 Route::get('/login', [AuthController::class, "index"])->name('login');
+Route::get('/getRandomEmp', [AuthController::class, "getRandomEmp"]);
 Route::post('/login', [AuthController::class, "login"])->name('login');
+
 Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
 Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')->middleware('signed');
 

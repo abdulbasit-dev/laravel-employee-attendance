@@ -45,4 +45,10 @@ class AuthController extends Controller
             ]);
         }
     }
+
+    public function getRandomEmp()
+    {
+        $user = User::whereIsAdmin(0)->inRandomOrder()->first();
+        return $user;
+    }
 }

@@ -16,8 +16,8 @@
               <div class="my-3 text-center">
                 <span class="fw-normal">or login with</span>
               </div>
-              {{-- <button class="btn btn-gray-700">Get Random
-                Employeee</button> --}}
+              <button class="btn btn-gray-700" id="getRandomEmp">Get Random
+                Employeee</button>
               </p>
             </div>
             <form action="{{ route('login') }}" method="POST">
@@ -82,3 +82,4 @@
     </div>
   </section>
 @endsection
+
