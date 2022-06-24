@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("department_id")->constrained();
+            $table->foreignId("department_id")->nullable()->constrained()->nullOnDelete();
             $table->string('title');
             $table->timestamps();
         });

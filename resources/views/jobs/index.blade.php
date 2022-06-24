@@ -55,7 +55,7 @@
             <tr>
                 <td class="fw-bold">{{ $loop->iteration }}</td>
                 <td><span class="fw-normal">{{ $job->title }}</span></td>
-                <td><span class="fw-normal text-info">{{ $job->department->name }}</span></td>
+                <td><span class="fw-normal text-info">{{ $job->department->name?? "---" }}</span></td>
                 <td><span class="fw-normal">{{ $job->created_at }}</span></td>
                 <td><span class="fw-normal">{{ $job->updated_at }}</span></td>
                 <td>
